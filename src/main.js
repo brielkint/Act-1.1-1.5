@@ -14,11 +14,11 @@ const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('.webg
 renderer.setSize(window.innerWidth, window.innerHeight);  // Set renderer size
 document.body.appendChild(renderer.domElement);  // Attach renderer to the DOM
 
-// Create the cube
-const geometry = new THREE.BoxGeometry(1, 1, 1);  // Cube geometry
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });  // Red color material
-const cube = new THREE.Mesh(geometry, material);  // Cube mesh
-scene.add(cube);  // Add cube to the scene
+// Create a Torus Knot (A complex, godly shape)
+const geometry = new THREE.TorusKnotGeometry(1, 0.4, 100, 16);  // Torus Knot geometry
+const material = new THREE.MeshBasicMaterial({ color: 0xffcc00, wireframe: true });  // Golden color with wireframe for a mystical look
+const torusKnot = new THREE.Mesh(geometry, material);  // Create mesh from geometry and material
+scene.add(torusKnot);  // Add torus knot to the scene
 
 // OrbitControls setup (to move the camera interactively)
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -33,12 +33,12 @@ window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// Animation loop to rotate the cube
+// Animation loop to rotate the Torus Knot
 function animate() {
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
+  torusKnot.rotation.x += 0.01;  // Rotate around x-axis
+  torusKnot.rotation.y += 0.01;  // Rotate around y-axis
   controls.update();  // Update controls for smooth camera movement
-  renderer.render(scene, camera);
+  renderer.render(scene, camera);  // Render the scene
   requestAnimationFrame(animate);  // Recursively call animate
 }
 
